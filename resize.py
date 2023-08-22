@@ -26,6 +26,5 @@ for f in os.listdir(sourceFolder):
         copyPath = os.path.join(copyDir, f)
         shutil.copyfile(nameFile, copyPath)
         img = cv2.imread(copyPath)
-        x = int(img.shape[0] * percentage)
-        y = int(img.shape[1] * percentage)
-        cv2.resize(img, (x,y))
+        resized = cv2.resize(img, None, fx=percentage, fy=percentage, interpolation = cv2.INTER_AREA)
+        cv2.imwrite(copyPath, resized)
